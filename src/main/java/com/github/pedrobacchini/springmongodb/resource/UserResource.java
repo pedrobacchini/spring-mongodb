@@ -4,9 +4,7 @@ import com.github.pedrobacchini.springmongodb.domain.User;
 import com.github.pedrobacchini.springmongodb.dto.UserDTO;
 import com.github.pedrobacchini.springmongodb.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,5 +22,11 @@ public class UserResource {
         List<User> users = userService.findAll();
         List<UserDTO> usersDto = users.stream().map(UserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok(usersDto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok(new UserDTO(user));
     }
 }
