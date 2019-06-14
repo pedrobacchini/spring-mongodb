@@ -2,6 +2,7 @@ package com.github.pedrobacchini.springmongodb.config;
 
 import com.github.pedrobacchini.springmongodb.domain.Post;
 import com.github.pedrobacchini.springmongodb.domain.User;
+import com.github.pedrobacchini.springmongodb.dto.AuthorDTO;
 import com.github.pedrobacchini.springmongodb.repository.PostRepository;
 import com.github.pedrobacchini.springmongodb.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -39,8 +40,8 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-        Post post1 = new Post(null, simpleDateFormat.parse("21/03/2018"), "Partiu viajem", "Vou viajer para São Paulo, Abraços!", maria);
-        Post post2 = new Post(null, simpleDateFormat.parse("22/03/2018"), "Bom dia", "Acordei feliz hoje!", maria);
+        Post post1 = new Post(null, simpleDateFormat.parse("21/03/2018"), "Partiu viajem", "Vou viajer para São Paulo, Abraços!", new AuthorDTO(maria));
+        Post post2 = new Post(null, simpleDateFormat.parse("22/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
