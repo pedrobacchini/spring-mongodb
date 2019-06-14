@@ -26,7 +26,13 @@ public class UserService {
     }
 
     public User insert(User user) {
-        return userRepository.insert(user);
+        user.setId(null);
+        return userRepository.save(user);
+    }
+
+    public void delete(String id) {
+        findById(id);
+        userRepository.deleteById(id);
     }
 
     public User fromDTO(UserDTO userDTO) {
