@@ -1,5 +1,6 @@
 package com.github.pedrobacchini.springmongodb.resource;
 
+import com.github.pedrobacchini.springmongodb.domain.Post;
 import com.github.pedrobacchini.springmongodb.domain.User;
 import com.github.pedrobacchini.springmongodb.dto.UserDTO;
 import com.github.pedrobacchini.springmongodb.service.UserService;
@@ -52,5 +53,12 @@ public class UserResource {
         user.setId(id);
         userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        System.out.println(user.toString());
+        return ResponseEntity.ok(user.getPosts());
     }
 }

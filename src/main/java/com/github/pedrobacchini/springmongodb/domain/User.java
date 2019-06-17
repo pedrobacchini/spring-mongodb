@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
 @Document
+@ToString
 public class User implements Serializable {
 
     private static final long serialVersionUID = -3744442800797599218L;
@@ -23,6 +24,13 @@ public class User implements Serializable {
     private String id = "dsa";
     private String name;
     private String email;
-    @DBRef(db = "post", lazy = true)
-    private final List<Post> posts = new ArrayList<>();
+//    @DBRef(lazy = true)
+    @DBRef
+    private List<Post> posts = new ArrayList<>();
+
+    public User(String id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 }
