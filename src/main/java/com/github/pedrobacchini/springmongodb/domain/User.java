@@ -24,8 +24,7 @@ public class User implements Serializable {
     private String id = "dsa";
     private String name;
     private String email;
-//    @DBRef(lazy = true)
-    @DBRef
+    @DBRef(lazy = true)
     private List<Post> posts = new ArrayList<>();
 
     public User(String id, String name, String email) {
